@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/categories")
+@RequestMapping("/category")
 public class CategoryController {
     @Autowired
     private ICategoryService categoryService;

@@ -3,6 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script>
+        function getProduct(i, result) {
+            return `<tr>
+                                                <td>${i + 1}</td>
+                                                <td>${result[i].name}</td>
+                                                <td>${result[i].price}</td>
+                                                <td>${result[i].description}</td>
+                                                <td>${result[i].image}</td>
+                                                <td><a href="">Edit</a></td>
+                                                <td><button
+                                                onclick="removeProduct(${result[i].id})">
+                                                Delete</button></td>
+                                           </tr>`;
+        }
+
+        function successHandler() {
+            return function () {
+                $.ajax({
+                    url: `/products`,
+                    type: 'GET',
+                    success: function (result) {
+                        let content = "";
+                        for (let i = 0; i < result.length; i++) {
+                            content += getProduct(i, result)
+                        }
+                        document.getElementById("table-body").innerHTML = content;
+                    }
+                });
+            };
+        }
+
+        function removeProduct(id) {
+            $.ajax({
+                url: `/products/${id}`,
+                type: 'DELETE',
+                success: successHandler()
+            });
+        }
+    </script>
 </head>
 <body>
 <a th:href="@{/product/create}">Create new product</a>
@@ -25,6 +65,7 @@
         <td>Edit</td>
         <td>Delete</td>
     </tr>
+    <tbody id="table-body">
     <tr th:each="product, productStat : ${products}">
         <td th:text="${productStat.count}"></td>
         <td th:text="${product.name}"></td>
@@ -32,8 +73,11 @@
         <td th:text="${product.description}"></td>
         <td><img width="150" height="150" th:src="@{'/img/' + ${product.image}}"></td>
         <td><a th:href="@{/product/edit/__${product.id}__}">Edit</a></td>
-        <td><a th:href="@{/product/delete/__${product.id}__}">Delete</a></td>
+        <td>
+            <button th:onclick="|removeProduct(${product.id})|">Delete</button>
+        </td>
     </tr>
+    </tbody>
 </table>
 </body>
 </html>
