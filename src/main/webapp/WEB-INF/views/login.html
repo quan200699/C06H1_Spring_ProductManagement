@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+    <title th:text="#{login.title}"></title>
+</head>
+<body>
+Language: <a href="?lang=en">English</a> | <a href="?lang=vi">Vietnamese</a>
+<form method="post">
+    <table>
+        <tr>
+            <td th:text="#{login.username}"></td>
+            <td><input type="text"/></td>
+        </tr>
+        <tr>
+            <td th:text="#{login.password}"></td>
+            <td><input type="password"/></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Submit"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
