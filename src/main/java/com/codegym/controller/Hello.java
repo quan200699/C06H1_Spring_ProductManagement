@@ -7,6 +7,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class Hello {
     @GetMapping
     public String show(){
+        return "index";
+    }
+
+    @GetMapping("/login")
+    public String loginPage(){
         return "login";
     }
 }
