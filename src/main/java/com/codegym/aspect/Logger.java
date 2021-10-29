@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class Logger {
 
-    @AfterThrowing("execution(public * com.codegym.service.ProductService.save(..))")
+    @AfterThrowing("execution(public * com.codegym.service.product.ProductService.save(..))")
     public void log() {
         System.out.println("Đây là ghi log lỗi");
     }

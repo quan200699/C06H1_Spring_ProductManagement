@@ -1,7 +1,7 @@
 package com.codegym.formater;
 
 import com.codegym.model.Category;
-import com.codegym.service.ICategoryService;
+import com.codegym.service.category.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.Formatter;
 import org.springframework.stereotype.Component;

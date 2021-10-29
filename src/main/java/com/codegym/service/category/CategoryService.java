@@ -1,4 +1,4 @@
-package com.codegym.service;
+package com.codegym.service.category;
 
 import com.codegym.model.Category;
 import com.codegym.repository.ICategoryRepository;

@@ -1,7 +1,7 @@
 package com.codegym.controller;
 
 import com.codegym.model.Product;
-import com.codegym.service.IProductService;
+import com.codegym.service.product.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
