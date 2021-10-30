@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -16,6 +17,9 @@ import java.util.Optional;
 public class UserService implements IUserService {
     @Autowired
     private IUserRepository userRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public Iterable<User> findAll() {
@@ -34,6 +38,9 @@ public class UserService implements IUserService {
 
     @Override
     public User save(User user) {
+        String plainPassword = user.getPassword();
+        String encodePassword = passwordEncoder.encode(plainPassword);
+        user.setPassword(encodePassword);
         return userRepository.save(user);
     }
 
